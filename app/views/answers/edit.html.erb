@@ -1,0 +1,13 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to question"), question_path(@question) %>
+
+  <div class="header">
+    <h1>Edit Answer</h1>
+  </div>
+
+  <%= turbo_frame_tag @answer do %>
+    <section class="ml-6 block">
+      <%= render "form", question: @question, answer: @answer %>
+    </section>
+  <% end %>
+</main>

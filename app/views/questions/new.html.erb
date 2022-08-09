@@ -1,4 +1,4 @@
-<main class="container">
+<section class="container">
   <%= link_to sanitize("&larr; Back to questions"), questions_path %>
 
   <%# turbo_frame_tag "function_turbo_frame" do %>
@@ -9,4 +9,4 @@
       <%= render "form", question: @question %>
     </block>
   <% end %>
-</main>
+</section>

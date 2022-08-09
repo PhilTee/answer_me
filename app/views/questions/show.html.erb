@@ -1,11 +1,38 @@
-<main class="container">
+<section class="container">
+  <block>
   <%= link_to sanitize("&larr; Back to questions"), questions_path %>
-  <div class="header">
-    <h1>
-      <%= @question.title %>
-    </h1>
+  </block>
+
+  <div class="card block">
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <h1 class="title is-4">
+            <%= @question.title %>
+          </h1>
+          <p class="subtitle is-6">@johnsmith</p>
+        </div>
+      </div>
+
+      <div class="content">
+        <%= @question.body %>
+      </div>
+
+      <%= link_to "Answer",
+                  new_question_answer_path(@question),
+                  data: { turbo_frame: dom_id(Answer.new) },
+                  class: "button is-primary has-text-weight-bold" %>
+      
+    </div>
   </div>
-  <div>
-    <%= @question.body %>
-  <div>
-</main>
+
+  <div class="ml-6 mb-3 block">
+    <%= turbo_frame_tag Answer.new %>
+  </div>
+
+  <%= turbo_frame_tag 'answers' do %>
+    <%= render @answers, question: @question %>
+  <% end %>
+</section>
+
+

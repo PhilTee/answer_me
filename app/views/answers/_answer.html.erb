@@ -1,0 +1,17 @@
+<%= turbo_frame_tag answer do %>
+<div class="card block ml-6 mb-3">
+    <div class="card-content">
+      <div class="content">
+        <%= answer.body %>
+      </div>
+
+      <div class="columns is-mobile">
+        <div class="column">
+          <%= button_to "Delete", question_answer_path(answer.question, answer), method: :delete, class: "button is-danger is-outlined is-pulled-right" %>
+          <%= link_to "Edit", edit_question_answer_path(answer.question, answer), class: "button is-info is-outlined is-pulled-right" %>
+        </div>
+      </div>
+      
+    </div>
+</div>
+<% end %>

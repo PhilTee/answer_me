@@ -1,0 +1,11 @@
+<section class="container">
+  <%= link_to sanitize("&larr; Back to question"), @question %>
+
+  <h1 class="title">New Answer</h1>
+  
+  <%= turbo_frame_tag @answer do %>
+    <div class="block">
+      <%= render "form", question: @question, answer: @answer %>
+    </div>
+  <% end %>
+</section>
