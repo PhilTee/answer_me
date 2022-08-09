@@ -2,7 +2,11 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy]
 
   def index
-    @questions = Question.ordered
+    if params[:search].present?
+      @questions = Search.perform(params[:search])
+    else
+      @questions = Question.ordered
+    end
   end
 
   def new
