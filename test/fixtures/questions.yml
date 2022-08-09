@@ -2,7 +2,9 @@
 first:
   title: Why is the sky blue?
   body: The sky always looks blue can anyone explain?
+  user: one
 
 second:
   title: Are we nearly there yet?
   body: I've been in the car for ages!
+  user: two

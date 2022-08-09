@@ -6,9 +6,14 @@
       </div>
 
       <div class="columns is-mobile">
+        <div class="column is-italic">
+          <%= answer.user.try(:email) %>
+        </div>
         <div class="column">
-          <%= button_to "Delete", question_answer_path(answer.question, answer), method: :delete, class: "button is-danger is-outlined is-pulled-right" %>
-          <%= link_to "Edit", edit_question_answer_path(answer.question, answer), class: "button is-info is-outlined is-pulled-right" %>
+          <% if current_user && current_user.id == answer.user_id %>
+            <%= button_to "Delete", question_answer_path(answer.question, answer), method: :delete, class: "button is-danger is-outlined is-pulled-right" %>
+            <%= link_to "Edit", edit_question_answer_path(answer.question, answer), class: "button is-info is-outlined is-pulled-right" %>
+          <% end %>
         </div>
       </div>
       

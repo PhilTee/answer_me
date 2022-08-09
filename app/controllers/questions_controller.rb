@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
   before_action :set_question, only: %i[show edit update destroy]
 
   def index
@@ -34,7 +35,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    if @question.update(question_params)
+    if @question.update(question_params) && @question.user_id == current_user.id
       redirect_to questions_path, notice: "Updated your question"
     else
       render :edit, status: :unprocessable_entity
@@ -42,11 +43,15 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.destroy
+    if @question.user_id == current_user.id
+      @question.destroy
 
-    respond_to do |format|
-      format.html { redirect_to questions_path, notice: "Your question has been deleted" }
-      format.turbo_stream
+      respond_to do |format|
+        format.html { redirect_to questions_path, notice: "Your question has been deleted" }
+        format.turbo_stream
+      end
+    else
+      redirect_to questions_path, alert: "You can only delete your owns questions"
     end
   end
 
@@ -57,6 +62,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :body)
+    params.require(:question).permit(:title, :body).merge(user_id: current_user.id)
   end
 end

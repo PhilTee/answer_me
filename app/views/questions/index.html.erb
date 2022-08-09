@@ -8,10 +8,17 @@
           <h1 class="title">Questions</h1>
         </div>
         <div class="column">
+          <% if current_user %>
           <%= link_to "Ask a question",
                       new_question_path,
                       data: { turbo_frame: dom_id(Question.new) },
                       class: "button is-primary has-text-weight-bold is-pulled-right" %>
+          <% else %>
+          <%= link_to "Ask a question",
+                      new_user_session_path,
+                      data: { turbo_frame: "_top" },
+                      class: "button is-primary has-text-weight-bold is-pulled-right" %>
+          <% end %>
         </div>
       </div>
 

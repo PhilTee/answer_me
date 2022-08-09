@@ -23,7 +23,7 @@ class AnswersController < ApplicationController
   end
 
   def update
-    if @answer.update(answer_params)
+    if @answer.update(answer_params) && @answer.user_id == current_user.id
       redirect_to question_path(@question), notice: "Updated your answer"
     else
       render :edit, status: :unprocessable_entity
@@ -31,15 +31,19 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @answer.destroy
+    if @answer.user_id == current_user.id 
+      @answer.destroy
 
-    redirect_to @question, notice: "Your question has been deleted"
+      redirect_to @question, notice: "Your answer has been deleted"
+    else
+      redirect_to @question, alert: "You can only delete your own answers"
+    end
   end
 
   private
 
   def answer_params
-    params.require(:answer).permit(:body)
+    params.require(:answer).permit(:body).merge(user_id: current_user.id)
   end
 
   def set_answer

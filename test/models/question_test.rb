@@ -10,6 +10,7 @@ class QuestionTest < ActiveSupport::TestCase
 
     question.title = 'title'
     question.body = 'body'
+    question.user_id = users(:one).id
 
     assert question.valid?
   end

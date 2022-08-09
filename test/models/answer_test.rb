@@ -10,6 +10,7 @@ class AnswerTest < ActiveSupport::TestCase
 
     answer.body = 'body'
     answer.question = questions(:second)
+    answer.user_id = users(:one).id
 
     assert answer.valid?
   end

@@ -7,6 +7,8 @@ class QuestionsTest < ApplicationSystemTestCase
 
   test "asking a new question" do
     visit questions_url
+    login_user(users(:one).email)
+
     assert_selector "h1", text: "Questions"
 
     click_on "Ask a question"
@@ -17,18 +19,26 @@ class QuestionsTest < ApplicationSystemTestCase
 
     assert_selector "h1", text: "Questions"
     assert_text "Isn't automated testing GREAT?"
+
+    click_button 'Log out'
   end
 
   test "viewing a question" do
     visit questions_url
+    login_user(users(:one).email)
+
     assert_selector "h1", text: "Questions"
 
     click_on @question.title
     assert_selector "h1", text: @question.title
+
+    click_button 'Log out'
   end
 
   test "editing a question" do
     visit questions_url
+    login_user(users(:one).email)
+
     assert_selector "h1", text: "Questions"
 
     click_on "Edit", match: :first
@@ -37,14 +47,20 @@ class QuestionsTest < ApplicationSystemTestCase
 
     assert_selector "h1", text: "Questions"
     assert_text "I changed this"
+
+    click_button 'Log out'
   end
 
-  test "deleting a question" do
+  test "question owners can delete on of their questions" do
     visit questions_url
+    login_user(users(:two).email)
+
     assert_selector "h1", text: "Questions"
     assert_text @question.title
 
     click_on "Delete", match: :first
     assert_no_text @question.title
+
+    click_button 'Log out'
   end
 end
