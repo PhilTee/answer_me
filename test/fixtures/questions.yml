@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 first:
   title: Why is the sky blue?
-  body: The sky always looks blue, why is this?
+  body: The sky always looks blue can anyone explain?
 
 second:
   title: Are we nearly there yet?
