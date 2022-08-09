@@ -1,0 +1,8 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+first:
+  title: Why is the sky blue?
+  body: The sky always looks blue, why is this?
+
+second:
+  title: Are we nearly there yet?
+  body: I've been in the car for ages!

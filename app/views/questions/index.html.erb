@@ -1,0 +1,26 @@
+<section class="section">
+  <div class="container">
+
+    <%= turbo_frame_tag "function_turbo_frame" do %>
+
+      <div class="columns is-mobile">
+        <div class="column">
+          <h1 class="title">Questions</h1>
+        </div>
+        <div class="column">
+          <%= link_to "Ask a question",
+                      new_question_path,
+                      data: { turbo_frame: dom_id(Question.new) },
+                      class: "button is-primary has-text-weight-bold is-pulled-right" %>
+        </div>
+      </div>
+
+    <% end %>
+
+    <%= turbo_frame_tag Question.new %>
+
+    <%= turbo_frame_tag "questions" do %>
+      <%= render @questions %>
+    <% end %>
+  </div>
+</section>

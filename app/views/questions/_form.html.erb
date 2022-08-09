@@ -1,0 +1,28 @@
+<%= simple_form_for question, html: { class: "question form" } do |f| %>
+
+  <div class="card block">
+    <% if question.errors.any? %>
+      <div class="error-message">
+        <%= question.errors.full_messages.to_sentence.capitalize %>
+      </div>
+      <% end %>
+
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <%= f.input :title, label: false, input_html: { autofocus: true, class: "title is-4" } %>
+        </div>
+      </div>
+
+      <div class="content">
+        <%= f.input :body, label: false %>
+      </div>
+
+      <%= f.submit class: "button is-primary has-text-weight-bold" %>
+      <%= link_to "Cancel", questions_path, class: "button is-info" %>
+    </div>
+  </div>  
+  
+  
+<% end %>
+

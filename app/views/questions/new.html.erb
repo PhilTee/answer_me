@@ -1,0 +1,12 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to questions"), questions_path %>
+
+  <%# turbo_frame_tag "function_turbo_frame" do %>
+    <h1 class="title">New question</h1>
+  
+  <%= turbo_frame_tag @question do %>
+    <block>
+      <%= render "form", question: @question %>
+    </block>
+  <% end %>
+</main>

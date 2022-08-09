@@ -1,0 +1,11 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to questions"), questions_path %>
+  <div class="header">
+    <h1>
+      <%= @question.title %>
+    </h1>
+  </div>
+  <div>
+    <%= @question.body %>
+  <div>
+</main>
